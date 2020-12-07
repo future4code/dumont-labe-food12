@@ -1,10 +1,11 @@
 import React from 'react'
+import { MainDiv } from './styled';
 
 function CartPage() {
     return(
-        <div>
+        <MainDiv>
             CartPage
-        </div>
+        </MainDiv>
     )
 }
 
