@@ -1,5 +1,6 @@
 import React from "react";
 import { SignupContainer, FormStyled } from "./styles";
+import Logo from "../../img/logo-future-eats-invert.png";
 
 // MATERIAL UI - IMPORTS
 import TextField from "@material-ui/core/TextField";
@@ -14,6 +15,8 @@ function SignupPage() {
   return (
     <ThemeProvider theme={theme}>
       <SignupContainer>
+        <img src={Logo} />
+        <br />
         <Typography align="center" component="h1" variant="h5">
           Cadastrar
         </Typography>
@@ -77,12 +80,13 @@ function SignupPage() {
             id="confirmarSenha"
             required
           />
-
+          <br />
           <Button color="primary" type="submit" fullWidth variant="contained">
             Criar
           </Button>
           <Grid container>
             <Grid item>
+              <br />
               <Link align="center" href="#" variant="body2">
                 {"Não possui cadastro? Clique aqui."}
               </Link>

@@ -1,6 +1,7 @@
 import React from "react";
 import { LoginContainer, FormStyled } from "./styles";
 import { ThemeProvider } from "@material-ui/core/styles";
+import Logo from "../../img/logo-future-eats-invert.png";
 
 // MATERIAL UI - IMPORTS
 import TextField from "@material-ui/core/TextField";
@@ -14,6 +15,8 @@ function LoginPage() {
   return (
     <ThemeProvider theme={theme}>
       <LoginContainer>
+        <img src={Logo} />
+        <br />
         <Typography align="center" component="h1" variant="h5">
           Entrar
         </Typography>
@@ -40,12 +43,13 @@ function LoginPage() {
             id="password"
             autoComplete="current-password"
           />
-
+          <br />
           <Button color="primary" type="submit" fullWidth variant="contained">
             Login
           </Button>
           <Grid container>
             <Grid item>
+              <br />
               <Link align="center" href="#" variant="body2">
                 {"Não possui cadastro? Clique aqui."}
               </Link>
