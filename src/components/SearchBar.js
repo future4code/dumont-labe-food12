@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 
-function SearchPage() {
+function SearchBar() {
   const [search, setSearch] = useState();
   const [restaurante, setRestaurante] = useState([
     "burguer",
@@ -29,4 +29,4 @@ function SearchPage() {
   );
 }
 
-export default SearchPage;
+export default SearchBar;
