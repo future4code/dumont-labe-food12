@@ -1,11 +1,11 @@
 import React from 'react'
 
-function SignupPage() {
+function DishCard() {
     return(
         <div>
-            SignupPage
+            DishCard
         </div>
     )
 }
 
-export default SignupPage;
+export default DishCard;
