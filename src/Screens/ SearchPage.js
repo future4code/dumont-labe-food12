@@ -1,17 +1,12 @@
-
 import React, { useState } from "react";
 
 function SearchPage() {
   const [search, setSearch] = useState();
-  const [restaurante, setRestaurante] = useState([
-    "burguer",
-    "bar do zé",
-    "lasanha",
-  ]);
+  const [restaurante, setRestaurante] = useState([]);
 
   const verificaRestaurante = () => {
     if (search === restaurante) {
-      return <p>Restaurante existe</p>;
+      return alert("Restaurante existe");
     }
   };
 
@@ -22,8 +17,13 @@ function SearchPage() {
   return (
     <div>
       {verificaRestaurante}
-      <input value={search} type="text" placeholder="Buscar" />
-      <button onClick={handleInput}>Buscar</button>
+      <input
+        value={search}
+        type="text"
+        placeholder="Buscar"
+        onChange={handleInput}
+      />
+      <button onClick={verificaRestaurante}>Buscar</button>
       <p>Busque Por Nomes De Restaurantes</p>
     </div>
   );
