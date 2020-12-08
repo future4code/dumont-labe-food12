@@ -1,13 +1,8 @@
-
 import React, { useState } from "react";
 
 function SearchBar() {
   const [search, setSearch] = useState();
-  const [restaurante, setRestaurante] = useState([
-    "burguer",
-    "bar do zé",
-    "lasanha",
-  ]);
+  const [restaurante, setRestaurante] = useState([]);
 
   const verificaRestaurante = () => {
     if (search === restaurante) {
@@ -21,6 +16,10 @@ function SearchBar() {
 
   return (
     <div>
+      {restaurante &&
+        restaurante.filter(() => {
+          return handleInput;
+        })}
       {verificaRestaurante}
       <input value={search} type="text" placeholder="Buscar" />
       <button onClick={handleInput}>Buscar</button>
