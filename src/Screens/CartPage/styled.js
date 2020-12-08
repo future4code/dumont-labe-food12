@@ -67,3 +67,105 @@ export const Title = styled.div`
     height: 42px;
     margin-top: 8px;
 `
+export const ShippingDiv = styled.div`
+    display: flex;
+    justify-content: flex-end;
+
+    p{
+        display: flex;
+        margin-right: 16px;
+    }
+`
+
+export const SubtotalDiv = styled.div`
+    display: flex;
+    justify-content: space-between;
+`
+
+export const SubtotalTitle = styled.p`
+    width: 164px;
+    height: 18px;
+    margin: 16px 0 24px 16px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.39px;
+    color: #000000;
+`
+
+export const SubtotalValue = styled.p`
+    width: 164px;
+    height: 18px;
+    margin: 14px 16px 26px 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.43px;
+    text-align: right;
+    color: #5cb646;
+`
+
+export const PaymentMethodDiv = styled.div`
+    display: flex;
+    position: relative;
+    height: 290px;
+    flex-direction: column;
+    padding-right: 16px;
+    padding-left: 16px;
+`
+
+export const PaymentMethodTitle = styled.p`
+    width: 328px;
+    height: 18px;
+    margin: 24px 0px 8px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.39px;
+    color: #000000;
+
+`
+
+export const Hr = styled.hr`
+    width: 328px;
+    border: solid 1px #000000;
+`
+
+export const ConfirmPayButton = styled.button`
+    width: 328px;
+    height: 42px;
+    border: none;
+    font-weight: bold;
+    background-color: rgba(92, 182, 70, 0.5);
+    position: absolute;
+    bottom: 0px;
+`
+
+
+
+export const CartFooter = styled.footer`
+    display: flex;
+    width: 360px;
+    height: 49px;
+`
+
+export const GoHomeDiv = styled.div`
+
+`
+
+export const GoCartDiv = styled.div`
+
+`
+
+export const GoProfileDiv = styled.div`
+
+`
