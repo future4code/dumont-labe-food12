@@ -21,7 +21,7 @@ function Routers() {
           <LoginPage />
         </Route>
         <Route exact path="/signup">
-          <SignupPage />
+          <SignUpPage />
         </Route>
         <Route exact path="/signup/address">
           <RegisterAddressPage />
