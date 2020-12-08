@@ -1,5 +1,9 @@
 import React from "react";
 import { SignupContainer, FormStyled } from "./styles";
+import Logo from "../../img/logo-future-eats-invert.png";
+import useForm from "../../hooks/useForm";
+import axios from "axios";
+import { useHistory } from "react-router";
 
 // MATERIAL UI - IMPORTS
 import TextField from "@material-ui/core/TextField";
@@ -11,80 +15,112 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "../../constants/theme";
 
 function SignupPage() {
+  const history = useHistory();
+  const [form, onChange] = useForm({
+    name: "",
+    email: "",
+    cpf: "",
+    password: "",
+  });
+
+  const handleSignup = async (event) => {
+    event.preventDefault();
+
+    const body = {
+      name: form.nome,
+      email: form.email,
+      cpf: form.cpf,
+      password: form.senha,
+    };
+
+    try {
+      const response = await axios.post(
+        `https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/signup`,
+        body
+      );
+
+      localStorage.setItem("token", response.data.token);
+
+      history.push("/signup/address");
+    } catch (error) {
+      alert("Cadastro falhou, tente novamente.");
+      console.error(error);
+    }
+  };
+
+  const goToLoginPage = () => {
+    history.push("/login");
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <SignupContainer>
+        <img src={Logo} alt="logo" />
+        <br />
         <Typography align="center" component="h1" variant="h5">
           Cadastrar
         </Typography>
         <FormStyled>
           <TextField
+            onChange={onChange}
             variant="outlined"
             margin="normal"
-            required
             fullWidth
             id="nome"
             label="Nome"
             name="nome"
-            autoComplete="nome"
-            autoFocus
+            value={form.nome}
             required
           />
           <TextField
+            onChange={onChange}
             variant="outlined"
             margin="normal"
-            required
             fullWidth
             id="email"
             label="E-mail"
             name="email"
-            autoComplete="email"
-            autoFocus
+            value={form.email}
             required
           />
           <TextField
+            inputProps={{ pattern: "[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" }}
+            onChange={onChange}
             variant="outlined"
             margin="normal"
-            required
             fullWidth
             id="cpf"
             label="CPF"
             name="cpf"
-            autoComplete="cpf"
-            autoFocus
+            value={form.cpf}
             required
           />
           <TextField
+            onChange={onChange}
             variant="outlined"
             margin="normal"
-            required
             fullWidth
             name="senha"
             label="Senha"
             type="password"
             id="senha"
-            autoComplete="current-password"
+            value={form.senha}
             required
           />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
+          <br />
+          <Button
+            onClick={handleSignup}
+            color="primary"
             fullWidth
-            name="confirmarSenha"
-            label="Confirme a senha anterior"
-            type="password"
-            id="confirmarSenha"
-            required
-          />
-
-          <Button color="primary" type="submit" fullWidth variant="contained">
+            variant="contained"
+          >
             Criar
           </Button>
           <Grid container>
             <Grid item>
-              <Link align="center" href="#" variant="body2">
-                {"Não possui cadastro? Clique aqui."}
+              <br />
+              <Link align="center" onClick={goToLoginPage} variant="body2">
+                {"Já possui cadastro? Clique aqui."}
               </Link>
             </Grid>
           </Grid>
