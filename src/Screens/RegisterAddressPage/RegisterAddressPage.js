@@ -1,5 +1,9 @@
 import React from "react";
 import { FormStyled, RegisterAddressContainer } from "./styles";
+import { useHistory } from "react-router";
+import useForm from "../../hooks/useForm";
+import axios from "axios";
+import useProtectedPage from "../../hooks/useProtectedPage";
 
 // MATERIAL UI - IMPORTS
 import TextField from "@material-ui/core/TextField";
@@ -9,6 +13,51 @@ import theme from "../../constants/theme";
 import { Button } from "@material-ui/core";
 
 function RegisterAddressPage() {
+  const history = useHistory();
+  useProtectedPage();
+  // const token = localStorage.setItem("token", token);
+
+  const [form, onChange] = useForm({
+    street: "",
+    number: "",
+    neighbourhood: "",
+    city: "",
+    state: "",
+    complement: "",
+  });
+
+  const handleAddAddress = async (event) => {
+    event.preventDefault();
+
+    const body = {
+      street: form.street,
+      number: form.number,
+      neighbourhood: form.neighbourhood,
+      city: form.city,
+      state: form.state,
+      complement: form.complement,
+    };
+
+    try {
+      const response = await axios.put(
+        `https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/address`,
+        body,
+        {
+          headers: {
+            // auth: token,
+          },
+        }
+      );
+
+      // localStorage.getItem("token", response.data.token);
+
+      history.push("/");
+    } catch (error) {
+      alert("Cadastro falhou, tente novamente.");
+      console.error(error);
+    }
+  };
+
   return (
     <RegisterAddressContainer>
       <ThemeProvider theme={theme}>
@@ -17,73 +66,74 @@ function RegisterAddressPage() {
         </Typography>
         <FormStyled>
           <TextField
+            onChange={onChange}
             variant="outlined"
-            required
             fullWidth
             id="logradouro"
-            label="Logradouro"
-            name="logradouro"
-            autoFocus
+            label="Rua / Avenida"
+            name="street"
             margin="normal"
+            value={form.street}
             required
           />
           <TextField
+            onChange={onChange}
             variant="outlined"
-            required
             fullWidth
             id="numero"
             label="Número"
-            name="numero"
-            autoFocus
+            name="number"
+            type="number"
+            value={form.number}
             margin="normal"
             required
           />
           <TextField
-            variant="outlined"
-            required
-            fullWidth
-            id="complemento"
-            label="Apto / Bloco"
-            name="complemento"
-            autoFocus
-            margin="normal"
-            required
-          />
-          <TextField
+            onChange={onChange}
             variant="outlined"
             margin="normal"
-            required
             fullWidth
             id="bairro"
             label="Bairro"
-            name="bairro"
-            autoFocus
+            name="neighbourhood"
+            value={form.neighbourhood}
             required
           />
           <TextField
+            onChange={onChange}
             variant="outlined"
             margin="normal"
-            required
             fullWidth
             id="cidade"
             label="Cidade"
-            name="cidade"
-            autoFocus
+            name="city"
+            value={form.city}
             required
           />
           <TextField
+            onChange={onChange}
             variant="outlined"
             margin="normal"
-            required
             fullWidth
             id="estado"
             label="Estado"
-            name="estado"
-            autoFocus
+            name="state"
+            value={form.state}
             required
           />
-
+          <TextField
+            onChange={onChange}
+            variant="outlined"
+            fullWidth
+            id="complemento"
+            label="Apto / Bloco"
+            name="complement"
+            value={form.complement}
+            margin="normal"
+          />
+          <br />
           <Button
+            onClick={handleAddAddress}
             color="primary"
             margin="normal"
             type="submit"
