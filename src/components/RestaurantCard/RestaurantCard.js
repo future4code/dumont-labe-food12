@@ -1,6 +1,8 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import { useHistory } from "react-router-dom"
 import { Card, CardActionArea, CardMedia, CardContent, Typography } from '@material-ui/core'
+import { goToRestaurant } from '../../route/coordinator';
 
 const useStyles = makeStyles({
     container: {
@@ -17,11 +19,12 @@ const useStyles = makeStyles({
 });
 
 const RestaurantCard = (props) => {
-    const classes = useStyles();
+    const classes = useStyles()
+    const history = useHistory()
 
     return (
         <Card className={classes.container}>
-            <CardActionArea>
+            <CardActionArea onClick={() => goToRestaurant(history, props.id)}>
                 <CardMedia
                     className={classes.image}
                     image={props.logoUrl}

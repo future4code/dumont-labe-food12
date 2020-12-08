@@ -26,7 +26,7 @@ function Routers() {
         <Route exact path="/signup/address">
           <RegisterAddressPage />
         </Route>
-        <Route exact path="/restaurant">
+        <Route exact path="/restaurant/:id">
           <RestaurantPage />
         </Route>
         <Route exact path="/cart">
