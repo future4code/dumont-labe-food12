@@ -3,6 +3,7 @@ import { FormStyled, RegisterAddressContainer } from "./styles";
 import { useHistory } from "react-router";
 import useForm from "../../hooks/useForm";
 import axios from "axios";
+import useProtectedPage from "../../hooks/useProtectedPage";
 
 // MATERIAL UI - IMPORTS
 import TextField from "@material-ui/core/TextField";
@@ -13,6 +14,8 @@ import { Button } from "@material-ui/core";
 
 function RegisterAddressPage() {
   const history = useHistory();
+  useProtectedPage();
+  // const token = localStorage.setItem("token", token);
 
   const [form, onChange] = useForm({
     street: "",
@@ -36,19 +39,17 @@ function RegisterAddressPage() {
     };
 
     try {
-      const token = localStorage.getItem("token", token);
-
       const response = await axios.put(
         `https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/address`,
         body,
         {
           headers: {
-            auth: token,
+            // auth: token,
           },
         }
       );
 
-      localStorage.setItem("token", response.data.token);
+      // localStorage.getItem("token", response.data.token);
 
       history.push("/");
     } catch (error) {

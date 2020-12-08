@@ -22,12 +22,14 @@ function LoginPage() {
     password: "",
   });
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      history.push("/");
-    }
-  }, [history]);
+  // LEVA O USUÁRIO QUE JÁ TEM LOGIN DIRETO PARA HOME PAGE
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     history.push("/");
+  //   }
+  // }, [history]);
 
   const handleLogin = async (event) => {
     event.preventDefault();
