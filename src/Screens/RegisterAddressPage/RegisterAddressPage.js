@@ -14,8 +14,10 @@ import { Button } from "@material-ui/core";
 
 function RegisterAddressPage() {
   const history = useHistory();
+  const token = localStorage.getItem("token");
+
   useProtectedPage();
-  // const token = localStorage.setItem("token", token);
+  console.log(token);
 
   const [form, onChange] = useForm({
     street: "",
@@ -44,14 +46,17 @@ function RegisterAddressPage() {
         body,
         {
           headers: {
-            // auth: token,
+            auth: token,
           },
         }
       );
 
-      // localStorage.getItem("token", response.data.token);
+      localStorage.removeItem("token");
 
+      localStorage.setItem("token", response.data.token);
       history.push("/");
+
+      console.log(response.data);
     } catch (error) {
       alert("Cadastro falhou, tente novamente.");
       console.error(error);
