@@ -17,36 +17,34 @@ import { ThemeProvider } from "@material-ui/core/styles";
 function LoginPage() {
   const history = useHistory();
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      history.push("/");
+    }
+  }, [history]);
+
   const [form, onChange] = useForm({
     email: "",
     password: "",
   });
 
-  // LEVA O USUÁRIO QUE JÁ TEM LOGIN DIRETO PARA HOME PAGE
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   if (token) {
-  //     history.push("/");
-  //   }
-  // }, [history]);
-
   const handleLogin = async (event) => {
-    event.preventDefault();
-
     const body = {
       email: form.email,
-      password: form.senha,
+      password: form.password,
     };
 
+    console.log("BODY", body);
+
     try {
+      event.preventDefault();
       const response = await axios.post(
         `https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/login`,
         body
       );
-
       localStorage.setItem("token", response.data.token);
-
+      handleLogin(form);
       history.push("/");
     } catch (error) {
       alert("Login falhou, tente novamente.");
@@ -90,7 +88,7 @@ function LoginPage() {
             label="Password"
             type="password"
             id="password"
-            value={form.senha}
+            value={form.password}
           />
           <br />
           <Button

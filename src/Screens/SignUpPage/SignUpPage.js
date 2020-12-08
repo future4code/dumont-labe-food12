@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { SignupContainer, FormStyled } from "./styles";
 import Logo from "../../img/logo-future-eats-invert.png";
 import useForm from "../../hooks/useForm";
@@ -14,7 +14,7 @@ import Typography from "@material-ui/core/Typography";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "../../constants/theme";
 
-function SignupPage() {
+function SignUpPage() {
   const history = useHistory();
   const [form, onChange] = useForm({
     name: "",
@@ -22,6 +22,13 @@ function SignupPage() {
     cpf: "",
     password: "",
   });
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      history.push("/");
+    }
+  }, [history]);
 
   const handleSignup = async (event) => {
     event.preventDefault();
@@ -130,4 +137,4 @@ function SignupPage() {
   );
 }
 
-export default SignupPage;
+export default SignUpPage;
