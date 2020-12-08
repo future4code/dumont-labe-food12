@@ -9,6 +9,7 @@ import CartPage from "../Screens/CartPage/CartPage";
 import PerfilPage from "../Screens/PerfilPage/PerfilPage";
 import EditPerfilPage from "../Screens/EditPerfilPage/EditPerfilPage";
 import EditAddressPage from "../Screens/EditAddressPage/EditAddressPage";
+import SearchBarPage from "../Screens/SearchBarPage/SearchBarPage";
 
 function Routers() {
   return (
@@ -19,6 +20,9 @@ function Routers() {
         </Route>
         <Route exact path="/login">
           <LoginPage />
+        </Route>
+        <Route exact path="/search">
+          <SearchBarPage />
         </Route>
         <Route exact path="/signup">
           <SignUpPage />

@@ -3,7 +3,8 @@ import axios from "axios";
 import RestaurantCard from "../../components/RestaurantCard/RestaurantCard";
 import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Tab, Tabs, Box } from "@material-ui/core";
-import SearchBar from "../../components/SearchBar/SearchBar";
+import { useHistory } from "react-router";
+
 
 const useStyles = makeStyles({
   listContainer: {
@@ -20,6 +21,7 @@ function TabPanel(props) {
 }
 
 function FeedPage() {
+  const history = useHistory()
   const classes = useStyles();
   const [restaurants, setRestaurants] = useState(0);
   const [foodCategory, setFoodCategory] = useState(0);
@@ -51,9 +53,14 @@ function FeedPage() {
     setFoodCategory(newValue);
   };
 
+ const goToSearch = () =>{
+   history.push("/search")
+ }
+
+
   return (
     <div>
-      <SearchBar filterRestaurant={restaurants} />
+      <button onClick={goToSearch}>Ir Para Busca</button>
 
       <AppBar position="static" color="default">
         <Tabs
