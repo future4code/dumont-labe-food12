@@ -56,7 +56,7 @@ function FeedPage() {
  const goToSearch = () =>{
    history.push("/search")
  }
-
+ console.log(restaurants)
 
   return (
     <div>
@@ -114,6 +114,7 @@ function FeedPage() {
                 return (
                   <RestaurantCard
                     key={restaurant.id}
+                    id={restaurant.id}
                     name={restaurant.name}
                     description={restaurant.description}
                     address={restaurant.address}
@@ -137,6 +138,7 @@ function FeedPage() {
                 return (
                   <RestaurantCard
                     key={restaurant.id}
+                    id={restaurant.id}
                     name={restaurant.name}
                     description={restaurant.description}
                     address={restaurant.address}
@@ -160,6 +162,7 @@ function FeedPage() {
                 return (
                   <RestaurantCard
                     key={restaurant.id}
+                    id={restaurant.id}
                     name={restaurant.name}
                     description={restaurant.description}
                     address={restaurant.address}
@@ -183,6 +186,7 @@ function FeedPage() {
                 return (
                   <RestaurantCard
                     key={restaurant.id}
+                    id={restaurant.id}
                     name={restaurant.name}
                     description={restaurant.description}
                     address={restaurant.address}
@@ -206,6 +210,7 @@ function FeedPage() {
                 return (
                   <RestaurantCard
                     key={restaurant.id}
+                    id={restaurant.id}
                     name={restaurant.name}
                     description={restaurant.description}
                     address={restaurant.address}
@@ -229,6 +234,7 @@ function FeedPage() {
                 return (
                   <RestaurantCard
                     key={restaurant.id}
+                    id={restaurant.id}
                     name={restaurant.name}
                     description={restaurant.description}
                     address={restaurant.address}
@@ -252,6 +258,7 @@ function FeedPage() {
                 return (
                   <RestaurantCard
                     key={restaurant.id}
+                    id={restaurant.id}
                     name={restaurant.name}
                     description={restaurant.description}
                     address={restaurant.address}
@@ -275,6 +282,7 @@ function FeedPage() {
                 return (
                   <RestaurantCard
                     key={restaurant.id}
+                    id={restaurant.id}
                     name={restaurant.name}
                     description={restaurant.description}
                     address={restaurant.address}
@@ -298,6 +306,7 @@ function FeedPage() {
                 return (
                   <RestaurantCard
                     key={restaurant.id}
+                    id={restaurant.id}
                     name={restaurant.name}
                     description={restaurant.description}
                     address={restaurant.address}
