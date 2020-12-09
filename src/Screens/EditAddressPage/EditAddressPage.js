@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import axios from 'axios';
 import { EditAddressContainer, FormStyled } from "./styles";
 
 // MATERIAL UI - IMPORTS
@@ -10,6 +11,40 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "../../constants/theme";
 
 function EditAddressPage() {
+
+  useEffect(() => {
+  }, []);
+
+  const putAddAddress = () => {
+
+    const body = {
+      street: "R. Afonso Braz",
+      number: "177",
+      neighbourhood: "Vila N. Conceição",
+      city: "São Paulo",
+      state: "SP",
+      complement: "71"
+    };
+
+      axios
+    .put(
+      `https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/address`,
+      body,
+      {
+        headers: {
+          auth: 
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlpkYWcyZVBHOG1zUDNkdG1vRFdrIiwibmFtZSI6IkFzdHJvZGV2IiwiZW1haWwiOiJhc3Ryb2RldkBmdXR1cmU0LmNvbSIsImNwZiI6IjExMy4xMTEuMTExLTExIiwiaGFzQWRkcmVzcyI6dHJ1ZSwiYWRkcmVzcyI6IlIuIEFmb25zbyBCcmF6LCAxNzcsIDcxIC0gVmlsYSBOLiBDb25jZWnDp8OjbyIsImlhdCI6MTYwNzM3NTY5Mn0.ODZDt8sX_emUKT1x-FxDcP0eWWI5z1yi5lYDTsak78s",
+        },
+      }
+    )
+    .then((response) => {
+      alert("Endereço cadastrado com sucesso")
+    })
+    .catch((error) => {
+      alert("Erro ao cadastrar endereço");
+    });
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <EditAddressContainer>
@@ -85,7 +120,7 @@ function EditAddressPage() {
             required
           />
 
-          <Button color="primary" type="submit" fullWidth variant="contained">
+          <Button onClick={putAddAddress()} color="primary" type="submit" fullWidth variant="contained">
             Salvar
           </Button>
           <Grid container>
