@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import useForm from "../../hooks/useForm";
 import { Button, Input } from "@material-ui/core";
 import axios from "axios";
+import { SearchPage, InputSearch, MainSearch } from "./styles";
+import SearchIcon from '@material-ui/icons/Search';
+import RestaurantCard from '../../components/RestaurantCard/RestaurantCard';
 
 function SearchBarPage() {
   const [restaurants, setRestaurants] = useState(0);
@@ -49,31 +52,35 @@ function SearchBarPage() {
   };
 
   return (
-    <div>
-      <form>
-        <Input
+    <MainSearch>
+      <SearchPage>
+        <SearchIcon onClick={onSubmit}>Buscar</SearchIcon>
+        <InputSearch
           placeholder="Busca"
           onChange={onChange}
           value={form.search}
           name={"search"}
         />
-        <Button onClick={onSubmit}>Buscar</Button>
-      </form>
+      </SearchPage>
 
       {filteredRestaurants &&
         filteredRestaurants.map((restaurant) => {
           console.log(restaurant);
           return (
-            <div>
-              <p>{restaurant.address}</p>
-              <p>{restaurant.category}</p>
-              <p>{restaurant.deliveryTime}</p>
-              <p>{restaurant.name}</p>
-              <p>{restaurant.logoUrl}</p>
-            </div>
+            <RestaurantCard
+              key={restaurant.id}
+              id={restaurant.id}
+              name={restaurant.name}
+              description={restaurant.description}
+              address={restaurant.address}
+              shipping={restaurant.shipping}
+              deliveryTime={restaurant.deliveryTime}
+              logoUrl={restaurant.logoUrl}
+              category={restaurant.category}
+            />
           );
         })}
-    </div>
+    </MainSearch>
   );
 }
 
