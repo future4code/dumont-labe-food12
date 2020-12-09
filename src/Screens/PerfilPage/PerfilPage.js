@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
   MainDiv,
-  Header,
-  HeaderTitleDiv,
   AdressInfoDiv,
   DeliveryAdress,
   AdressDetail,
@@ -11,6 +9,8 @@ import {
 } from "./styles";
 import CreateIcon from "@material-ui/icons/Create";
 import axios from "axios";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 
 function PerfilPage() {
   const [profile, setProfile] = useState({});
@@ -61,11 +61,7 @@ function PerfilPage() {
 
   return (
     <MainDiv>
-      <Header>
-        <HeaderTitleDiv>
-          <p>Meu perfil</p>
-        </HeaderTitleDiv>
-      </Header>
+      <Header title={"Meu Perfil"} />
       <hr />
       <div>
         <Pencil>
@@ -82,7 +78,7 @@ function PerfilPage() {
         <AdressDetail>{profile.address}</AdressDetail>
       </AdressInfoDiv>
       <Title>Histórico de pedidos</Title>
-      <hr />
+      <Footer />
     </MainDiv>
   );
 }

@@ -3,8 +3,9 @@ import useForm from "../../hooks/useForm";
 import { Button, Input } from "@material-ui/core";
 import axios from "axios";
 import { SearchPage, InputSearch, MainSearch } from "./styles";
-import SearchIcon from '@material-ui/icons/Search';
-import RestaurantCard from '../../components/RestaurantCard/RestaurantCard';
+import SearchIcon from "@material-ui/icons/Search";
+import RestaurantCard from "../../components/RestaurantCard/RestaurantCard";
+import Header from "../../components/Header/Header";
 
 function SearchBarPage() {
   const [restaurants, setRestaurants] = useState(0);
@@ -53,6 +54,7 @@ function SearchBarPage() {
 
   return (
     <MainSearch>
+      <Header title={"Busca"} showBackButton />
       <SearchPage>
         <SearchIcon onClick={onSubmit}>Buscar</SearchIcon>
         <InputSearch

@@ -12,7 +12,7 @@ function Footer() {
   const history = useHistory();
 
   const goToHomePage = () => {
-    history.push("/");
+    history.push("/feed");
   };
 
   const goToCartPage = () => {
@@ -26,7 +26,7 @@ function Footer() {
     <ThemeProvider theme={theme}>
       <Switch>
         <MainDiv>
-          <Route exact path="/login">
+          <Route exact path={("/login", "/", "/feed")}>
             <GoHomeDiv onClick={goToHomePage}>
               <HomeOutlinedIcon color="primary" />
             </GoHomeDiv>
@@ -48,7 +48,7 @@ function Footer() {
               <PersonOutlineOutlinedIcon />
             </GoProfileDiv>
           </Route>
-          <Route exact path="/signup">
+          <Route exact path="/perfil">
             <GoHomeDiv onClick={goToHomePage}>
               <HomeOutlinedIcon />
             </GoHomeDiv>

@@ -4,6 +4,7 @@ import { useHistory } from "react-router";
 import useForm from "../../hooks/useForm";
 import axios from "axios";
 import useProtectedPage from "../../hooks/useProtectedPage";
+import Header from "../../components/Header/Header";
 
 // MATERIAL UI - IMPORTS
 import TextField from "@material-ui/core/TextField";
@@ -64,6 +65,7 @@ function RegisterAddressPage() {
   return (
     <RegisterAddressContainer>
       <ThemeProvider theme={theme}>
+        <Header showBackButton />
         <Typography component="h1" variant="h5">
           Meu endereço
         </Typography>
