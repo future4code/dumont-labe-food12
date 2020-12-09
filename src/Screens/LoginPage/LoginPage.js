@@ -16,6 +16,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 
 function LoginPage() {
   const history = useHistory();
+  // const [hasAddress, setHasAddress] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -35,8 +36,6 @@ function LoginPage() {
       password: form.password,
     };
 
-    console.log("BODY", body);
-
     try {
       event.preventDefault();
       const response = await axios.post(
@@ -44,10 +43,14 @@ function LoginPage() {
         body
       );
       localStorage.setItem("token", response.data.token);
+      // setHasAddress(response.data.user.hasAddress);
       handleLogin(form);
+
+      // console.log("RESPONSE TOKEN", response.data.token);
+      // console.log("user", response.data.user.hasAddress);
+
       history.push("/");
     } catch (error) {
-      alert("Login falhou, tente novamente.");
       console.error(error);
     }
   };

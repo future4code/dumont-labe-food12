@@ -20,7 +20,6 @@ function EditAddressPage() {
           <TextField
             variant="outlined"
             margin="normal"
-            required
             fullWidth
             id="endereco"
             label="Endereço"
@@ -32,7 +31,6 @@ function EditAddressPage() {
           <TextField
             variant="outlined"
             margin="normal"
-            required
             fullWidth
             id="numero"
             label="Número"
@@ -44,7 +42,6 @@ function EditAddressPage() {
           <TextField
             variant="outlined"
             margin="normal"
-            required
             fullWidth
             id="complemento"
             label="Complemento"
@@ -56,7 +53,6 @@ function EditAddressPage() {
           <TextField
             variant="outlined"
             margin="normal"
-            required
             fullWidth
             name="bairro"
             label="Bairro"
@@ -67,7 +63,6 @@ function EditAddressPage() {
           <TextField
             variant="outlined"
             margin="normal"
-            required
             fullWidth
             name="cidade"
             label="Cidade"
@@ -77,7 +72,6 @@ function EditAddressPage() {
           <TextField
             variant="outlined"
             margin="normal"
-            required
             fullWidth
             name="estado"
             label="Estado"
