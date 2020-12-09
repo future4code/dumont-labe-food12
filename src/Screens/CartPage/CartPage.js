@@ -80,7 +80,7 @@ function CartPage() {
               </div>
             );
           })}
-        <Header />
+        <Header title={"Meu carrinho"} showBackButton />
         <AdressInfoDiv>
           <DeliveryAdress>Endereço de entrega</DeliveryAdress>
           <AdressDetail>Rua Labenu, 100</AdressDetail>

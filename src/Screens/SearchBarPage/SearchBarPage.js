@@ -62,7 +62,6 @@ function SearchBarPage() {
           name={"search"}
         />
       </SearchPage>
-
       {filteredRestaurants &&
         filteredRestaurants.map((restaurant) => {
           console.log(restaurant);
