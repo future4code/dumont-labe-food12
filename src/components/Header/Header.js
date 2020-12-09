@@ -2,7 +2,9 @@ import React from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import { MainDiv, HeaderTitleDiv } from "./styled";
 
-function Header() {
+import ArrowBackIosOutlinedIcon from "@material-ui/icons/ArrowBackIosOutlined";
+
+function Header({ showBackButton, title }) {
   const history = useHistory();
 
   const goBack = () => {
@@ -12,17 +14,8 @@ function Header() {
   return (
     <MainDiv>
       <HeaderTitleDiv>
-        <Switch>
-          <Route exact path="/cart">
-            <button onClick={goBack}>voltar</button>
-            <p>Meu carrinho</p>
-          </Route>
-        </Switch>
-        <Switch>
-          <Route exact path="/signup">
-            <p>Cadastrar</p>
-          </Route>
-        </Switch>
+        {showBackButton && <ArrowBackIosOutlinedIcon onClick={goBack} />}
+        {title}
       </HeaderTitleDiv>
     </MainDiv>
   );
