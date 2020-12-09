@@ -4,6 +4,7 @@ import Logo from "../../img/logo-future-eats-invert.png";
 import useForm from "../../hooks/useForm";
 import axios from "axios";
 import { useHistory } from "react-router";
+import Header from "../../components/Header/Header";
 
 // MATERIAL UI - IMPORTS
 import TextField from "@material-ui/core/TextField";
@@ -64,6 +65,7 @@ function SignUpPage() {
 
   return (
     <ThemeProvider theme={theme}>
+      <Header showBackButton />
       <SignupContainer>
         <img src={Logo} alt="logo" />
         <br />

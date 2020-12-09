@@ -15,7 +15,7 @@ function Routers() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/">
+        <Route exact path={("/", "/feed")}>
           <FeedPage />
         </Route>
         <Route exact path="/login">

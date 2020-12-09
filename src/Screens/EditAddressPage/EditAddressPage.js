@@ -1,6 +1,8 @@
-import React, {useEffect, useState} from "react";
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { EditAddressContainer, FormStyled } from "./styles";
+import Header from "../../components/Header/Header";
+import useForm from "../../hooks/useForm";
 
 // MATERIAL UI - IMPORTS
 import TextField from "@material-ui/core/TextField";
@@ -11,42 +13,49 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "../../constants/theme";
 
 function EditAddressPage() {
+  useEffect(() => {}, []);
 
-  useEffect(() => {
-  }, []);
+  const [form, onChange] = useForm({
+    street: "",
+    number: "",
+    neighbourhood: "",
+    city: "",
+    state: "",
+    complement: "",
+  });
 
   const putAddAddress = () => {
-
     const body = {
-      street: "R. Afonso Braz",
-      number: "177",
-      neighbourhood: "Vila N. Conceição",
-      city: "São Paulo",
-      state: "SP",
-      complement: "71"
+      street: form.street,
+      number: form.number,
+      neighbourhood: form.neighbourhood,
+      city: form.city,
+      state: form.state,
+      complement: form.complement,
     };
 
-      axios
-    .put(
-      `https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/address`,
-      body,
-      {
-        headers: {
-          auth: 
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlpkYWcyZVBHOG1zUDNkdG1vRFdrIiwibmFtZSI6IkFzdHJvZGV2IiwiZW1haWwiOiJhc3Ryb2RldkBmdXR1cmU0LmNvbSIsImNwZiI6IjExMy4xMTEuMTExLTExIiwiaGFzQWRkcmVzcyI6dHJ1ZSwiYWRkcmVzcyI6IlIuIEFmb25zbyBCcmF6LCAxNzcsIDcxIC0gVmlsYSBOLiBDb25jZWnDp8OjbyIsImlhdCI6MTYwNzM3NTY5Mn0.ODZDt8sX_emUKT1x-FxDcP0eWWI5z1yi5lYDTsak78s",
-        },
-      }
-    )
-    .then((response) => {
-      alert("Endereço cadastrado com sucesso")
-    })
-    .catch((error) => {
-      alert("Erro ao cadastrar endereço");
-    });
-  }
+    const token = localStorage.getItem("token");
+    axios
+      .put(
+        `https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/address`,
+        body,
+        {
+          headers: {
+            auth: token,
+          },
+        }
+      )
+      .then((response) => {
+        alert("Endereço cadastrado com sucesso");
+      })
+      .catch((error) => {
+        alert("Erro ao cadastrar endereço");
+      });
+  };
 
   return (
     <ThemeProvider theme={theme}>
+      <Header title={""} showBackButton />
       <EditAddressContainer>
         <Typography align="center" component="h1" variant="h5">
           Endereço
@@ -60,6 +69,7 @@ function EditAddressPage() {
             label="Endereço"
             name="endereco"
             autoComplete="endereco"
+            value={form.street}
             autoFocus
             required
           />
@@ -71,6 +81,7 @@ function EditAddressPage() {
             label="Número"
             name="numero"
             autoComplete="numero"
+            value={form.number}
             autoFocus
             required
           />
@@ -82,6 +93,7 @@ function EditAddressPage() {
             label="Complemento"
             name="complemento"
             autoComplete="complemento"
+            value={form.complement}
             autoFocus
             required
           />
@@ -93,6 +105,7 @@ function EditAddressPage() {
             label="Bairro"
             id="bairro"
             autoComplete="bairro"
+            value={form.neighbourhood}
             required
           />
           <TextField
@@ -102,6 +115,7 @@ function EditAddressPage() {
             name="cidade"
             label="Cidade"
             id="cidade"
+            value={form.city}
             required
           />
           <TextField
@@ -111,10 +125,17 @@ function EditAddressPage() {
             name="estado"
             label="Estado"
             id="estado"
+            value={form.state}
             required
           />
 
-          <Button onClick={putAddAddress()} color="primary" type="submit" fullWidth variant="contained">
+          <Button
+            onClick={putAddAddress()}
+            color="primary"
+            type="submit"
+            fullWidth
+            variant="contained"
+          >
             Salvar
           </Button>
           <Grid container>
