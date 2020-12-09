@@ -16,6 +16,7 @@ import theme from "../../constants/theme";
 
 function SignUpPage() {
   const history = useHistory();
+  // const [hasAdress, setHasAdress] = useState("");
   const [form, onChange] = useForm({
     name: "",
     email: "",
@@ -45,9 +46,11 @@ function SignUpPage() {
         `https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/signup`,
         body
       );
-
+      console.log("RESPONSE", response);
       localStorage.setItem("token", response.data.token);
 
+      // setHasAdress(response.user.hasAdress)
+      // console.log("HAS Adress", response.user.hasAdress);
       history.push("/signup/address");
     } catch (error) {
       alert("Cadastro falhou, tente novamente.");
