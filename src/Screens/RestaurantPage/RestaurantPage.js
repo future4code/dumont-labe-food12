@@ -6,7 +6,12 @@ import { Card, CardContent, CardMedia, CircularProgress, Typography } from '@mat
 import DishCard from '../../components/DishCard/DishCard'
 
 const useStyles = makeStyles({
-    container: {
+    mainContainer: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+    },
+    detailCardContainer: {
         width: 328,
         marginTop: 8,
     },
@@ -47,11 +52,14 @@ function RestaurantPage() {
             });
     }
 
-    console.log(restaurantDetail)
+    // console.log(restaurantDetail)
+    const productsArray = restaurantDetail.products
+    console.log(productsArray)
 
-    if (restaurantDetail) {
-        return (
-            <div>
+
+    return (
+        <div className={classes.mainContainer}>
+            <div className={classes.detailCardContainer}>
                 <Card>
                     <CardMedia
                         className={classes.image}
@@ -86,16 +94,24 @@ function RestaurantPage() {
                         </Typography>
                     </CardContent>
                 </Card>
-                <DishCard />
             </div>
-        )
-    } else {
-        return (
             <div>
-                <CircularProgress />
+                {productsArray && productsArray.map((product) => {
+                    return (
+                        <DishCard
+                            key={product.id}
+                            id={product.id}
+                            name={product.name}
+                            description={product.description}
+                            photoUrl={product.photoUrl}
+                            category={product.category}
+                            price={product.price}
+                        />
+                    )
+                })}
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 export default RestaurantPage;

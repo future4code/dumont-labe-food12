@@ -5,7 +5,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Tab, Tabs, Box } from "@material-ui/core";
 import { useHistory } from "react-router";
 
-
 const useStyles = makeStyles({
   listContainer: {
     display: "flex",
@@ -31,13 +30,13 @@ function FeedPage() {
   }, []);
 
   const getRestaurants = () => {
+    const token = localStorage.getItem("token")
     axios
       .get(
         `https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/restaurants`,
         {
           headers: {
-            auth:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlpkYWcyZVBHOG1zUDNkdG1vRFdrIiwibmFtZSI6IkFzdHJvZGV2IiwiZW1haWwiOiJhc3Ryb2RldkBmdXR1cmU0LmNvbSIsImNwZiI6IjExMy4xMTEuMTExLTExIiwiaGFzQWRkcmVzcyI6dHJ1ZSwiYWRkcmVzcyI6IlIuIEFmb25zbyBCcmF6LCAxNzcsIDcxIC0gVmlsYSBOLiBDb25jZWnDp8OjbyIsImlhdCI6MTYwNzM3NTY5Mn0.ODZDt8sX_emUKT1x-FxDcP0eWWI5z1yi5lYDTsak78s",
+            auth: token
           },
         }
       )
@@ -45,7 +44,7 @@ function FeedPage() {
         setRestaurants(response.data.restaurants);
       })
       .catch((error) => {
-        alert("Erro ao requisitar os restaurantes");
+        console.error(error.message)
       });
   };
 
@@ -56,7 +55,7 @@ function FeedPage() {
  const goToSearch = () =>{
    history.push("/search")
  }
-
+ console.log(restaurants)
 
   return (
     <div>
@@ -114,6 +113,7 @@ function FeedPage() {
                 return (
                   <RestaurantCard
                     key={restaurant.id}
+                    id={restaurant.id}
                     name={restaurant.name}
                     description={restaurant.description}
                     address={restaurant.address}
@@ -137,6 +137,7 @@ function FeedPage() {
                 return (
                   <RestaurantCard
                     key={restaurant.id}
+                    id={restaurant.id}
                     name={restaurant.name}
                     description={restaurant.description}
                     address={restaurant.address}
@@ -160,6 +161,7 @@ function FeedPage() {
                 return (
                   <RestaurantCard
                     key={restaurant.id}
+                    id={restaurant.id}
                     name={restaurant.name}
                     description={restaurant.description}
                     address={restaurant.address}
@@ -183,6 +185,7 @@ function FeedPage() {
                 return (
                   <RestaurantCard
                     key={restaurant.id}
+                    id={restaurant.id}
                     name={restaurant.name}
                     description={restaurant.description}
                     address={restaurant.address}
@@ -206,6 +209,7 @@ function FeedPage() {
                 return (
                   <RestaurantCard
                     key={restaurant.id}
+                    id={restaurant.id}
                     name={restaurant.name}
                     description={restaurant.description}
                     address={restaurant.address}
@@ -229,6 +233,7 @@ function FeedPage() {
                 return (
                   <RestaurantCard
                     key={restaurant.id}
+                    id={restaurant.id}
                     name={restaurant.name}
                     description={restaurant.description}
                     address={restaurant.address}
@@ -252,6 +257,7 @@ function FeedPage() {
                 return (
                   <RestaurantCard
                     key={restaurant.id}
+                    id={restaurant.id}
                     name={restaurant.name}
                     description={restaurant.description}
                     address={restaurant.address}
@@ -275,6 +281,7 @@ function FeedPage() {
                 return (
                   <RestaurantCard
                     key={restaurant.id}
+                    id={restaurant.id}
                     name={restaurant.name}
                     description={restaurant.description}
                     address={restaurant.address}
@@ -298,6 +305,7 @@ function FeedPage() {
                 return (
                   <RestaurantCard
                     key={restaurant.id}
+                    id={restaurant.id}
                     name={restaurant.name}
                     description={restaurant.description}
                     address={restaurant.address}

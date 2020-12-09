@@ -52,7 +52,6 @@ function EditPerfilPage() {
           <TextField
             variant="outlined"
             margin="normal"
-            required
             fullWidth
             id="nome"
             label="Nome"
@@ -64,7 +63,6 @@ function EditPerfilPage() {
           <TextField
             variant="outlined"
             margin="normal"
-            required
             fullWidth
             id="email"
             label="E-mail"
@@ -76,7 +74,6 @@ function EditPerfilPage() {
           <TextField
             variant="outlined"
             margin="normal"
-            required
             fullWidth
             id="cpf"
             label="CPF"

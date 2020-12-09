@@ -5,15 +5,14 @@ export const CardContainer = styled.div`
     height: 112px;
     margin: 7px 0 0;
     border-radius: 8px;
-    border: solid 1px var(--greyish);
-    background: gray;
+    border: solid 1px grey;
     display: flex;
 `
-export const DishImage = styled.div`
+export const DishImage = styled.img`
     width: 96px;
     height: 112px;
-    object-fit: contain;
-    background: red;
+    object-fit: cover;
+    border-radius: 8px 0 0 8px;
 `
 export const CardDetailContainer = styled.div`
     width: 216px;
@@ -26,7 +25,9 @@ export const CardDetailContainer = styled.div`
 `
 export const Text16 = styled.p`
     font-size: 16px;
+    margin: 0;
 `
 export const Text12 = styled.p`
     font-size: 12px;
+    margin: 0;
 `
