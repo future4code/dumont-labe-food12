@@ -118,7 +118,6 @@ function CartPage() {
           />
           <ConfirmPayButton>Confirmar</ConfirmPayButton>
         </PaymentMethodDiv>
-        <hr />
       </ApplicationDiv>
       <Footer />
     </MainDiv>

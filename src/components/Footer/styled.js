@@ -7,6 +7,9 @@ export const MainDiv = styled.footer`
   width: 360px;
   height: 49px;
   border-top: 1px solid grey;
+  background: white;
+  position: fixed;
+  bottom: 0px;
 `;
 
 export const GoHomeDiv = styled.div`

@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import RestaurantCard from "../../components/RestaurantCard/RestaurantCard";
 import { makeStyles } from "@material-ui/core/styles";
-import { AppBar, Tab, Tabs, Box } from "@material-ui/core";
 import { useHistory } from "react-router";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "../../constants/theme";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { AppBar, Tab, Tabs, Box, Paper, InputBase, IconButton } from "@material-ui/core";
+import SearchIcon from "@material-ui/icons/Search";
+import { goToSearch } from "../../route/coordinator";
 
 const useStyles = makeStyles({
   listContainer: {
@@ -55,17 +57,20 @@ function FeedPage() {
   const handleFoodCategoryChange = (event, newValue) => {
     setFoodCategory(newValue);
   };
-
-  const goToSearch = () => {
-    history.push("/search");
-  };
   console.log(restaurants);
 
   return (
     <ThemeProvider theme={theme}>
       <div>
         <Header title={"FutureEats"} />
-        <button onClick={goToSearch}>Ir Para Busca</button>
+
+        <Paper color="primary" onClick={() => goToSearch(history)}>
+          <IconButton type="submit">
+            <SearchIcon />
+          </IconButton>
+          <InputBase placeholder="Restaurante" />
+        </Paper>
+
         <AppBar position="static" color="default">
           <Tabs
             value={foodCategory}

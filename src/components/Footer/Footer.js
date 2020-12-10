@@ -2,6 +2,7 @@ import React from "react";
 import { MainDiv, GoCartDiv, GoHomeDiv, GoProfileDiv } from "./styled";
 import theme from "../../constants/theme";
 import { Route, Switch, useHistory } from "react-router-dom";
+import { goToFeed, goToCart, goToProfile } from "../../route/coordinator"
 
 import { ThemeProvider } from "@material-ui/core/styles";
 import PersonOutlineOutlinedIcon from "@material-ui/icons/PersonOutlineOutlined";
@@ -11,51 +12,40 @@ import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 function Footer() {
   const history = useHistory();
 
-  const goToHomePage = () => {
-    history.push("/feed");
-  };
-
-  const goToCartPage = () => {
-    history.push("/cart");
-  };
-
-  const goToProfilePage = () => {
-    history.push("/perfil");
-  };
   return (
     <ThemeProvider theme={theme}>
       <Switch>
         <MainDiv>
-          <Route exact path={("/login", "/", "/feed")}>
-            <GoHomeDiv onClick={goToHomePage}>
+          <Route exact path={["/login", "/", "/feed"]}>
+            <GoHomeDiv onClick={() => goToFeed(history)}>
               <HomeOutlinedIcon color="primary" />
             </GoHomeDiv>
-            <GoCartDiv onClick={goToCartPage}>
+            <GoCartDiv onClick={() => goToCart(history)}>
               <ShoppingCartOutlinedIcon />
             </GoCartDiv>
-            <GoProfileDiv onClick={goToProfilePage}>
+            <GoProfileDiv onClick={() => goToProfile(history)}>
               <PersonOutlineOutlinedIcon />
             </GoProfileDiv>
           </Route>
           <Route exact path="/cart">
-            <GoHomeDiv onClick={goToHomePage}>
+            <GoHomeDiv onClick={() => goToFeed(history)}>
               <HomeOutlinedIcon />
             </GoHomeDiv>
-            <GoCartDiv onClick={goToCartPage}>
+            <GoCartDiv onClick={() => goToCart(history)}>
               <ShoppingCartOutlinedIcon color="primary" />
             </GoCartDiv>
-            <GoProfileDiv onClick={goToProfilePage}>
+            <GoProfileDiv onClick={() => goToProfile(history)}>
               <PersonOutlineOutlinedIcon />
             </GoProfileDiv>
           </Route>
           <Route exact path="/perfil">
-            <GoHomeDiv onClick={goToHomePage}>
+            <GoHomeDiv onClick={() => goToFeed(history)}>
               <HomeOutlinedIcon />
             </GoHomeDiv>
-            <GoCartDiv onClick={goToCartPage}>
+            <GoCartDiv onClick={() => goToCart(history)}>
               <ShoppingCartOutlinedIcon />
             </GoCartDiv>
-            <GoProfileDiv onClick={goToProfilePage}>
+            <GoProfileDiv onClick={() => goToProfile(history)}>
               <PersonOutlineOutlinedIcon color="primary" />
             </GoProfileDiv>
           </Route>

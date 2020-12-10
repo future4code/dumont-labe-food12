@@ -63,93 +63,94 @@ function RegisterAddressPage() {
   };
 
   return (
-    <RegisterAddressContainer>
+    <div>
       <ThemeProvider theme={theme}>
         <Header showBackButton />
-        <Typography component="h1" variant="h5">
-          Meu endereço
-        </Typography>
-        <FormStyled>
-          <TextField
-            onChange={onChange}
-            variant="outlined"
-            fullWidth
-            id="logradouro"
-            label="Rua / Avenida"
-            name="street"
-            margin="normal"
-            value={form.street}
-            required
-          />
-          <TextField
-            onChange={onChange}
-            variant="outlined"
-            fullWidth
-            id="numero"
-            label="Número"
-            name="number"
-            type="number"
-            value={form.number}
-            margin="normal"
-            required
-          />
-          <TextField
-            onChange={onChange}
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            id="bairro"
-            label="Bairro"
-            name="neighbourhood"
-            value={form.neighbourhood}
-            required
-          />
-          <TextField
-            onChange={onChange}
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            id="cidade"
-            label="Cidade"
-            name="city"
-            value={form.city}
-            required
-          />
-          <TextField
-            onChange={onChange}
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            id="estado"
-            label="Estado"
-            name="state"
-            value={form.state}
-            required
-          />
-          <TextField
-            onChange={onChange}
-            variant="outlined"
-            fullWidth
-            id="complemento"
-            label="Apto / Bloco"
-            name="complement"
-            value={form.complement}
-            margin="normal"
-          />
-          <br />
-          <Button
-            onClick={handleAddAddress}
-            color="primary"
-            margin="normal"
-            type="submit"
-            fullWidth
-            variant="contained"
-          >
-            Salvar
+        <RegisterAddressContainer>
+          <Typography component="h1" variant="h5">
+            Meu endereço
+          </Typography>
+          <FormStyled>
+            <TextField
+              onChange={onChange}
+              variant="outlined"
+              fullWidth
+              id="logradouro"
+              label="Rua / Avenida"
+              name="street"
+              // margin="normal"
+              value={form.street}
+              required
+            />
+            <TextField
+              onChange={onChange}
+              variant="outlined"
+              fullWidth
+              id="numero"
+              label="Número"
+              name="number"
+              type="number"
+              value={form.number}
+              // margin="normal"
+              required
+            />
+            <TextField
+              onChange={onChange}
+              variant="outlined"
+              // margin="normal"
+              fullWidth
+              id="bairro"
+              label="Bairro"
+              name="neighbourhood"
+              value={form.neighbourhood}
+              required
+            />
+            <TextField
+              onChange={onChange}
+              variant="outlined"
+              // margin="normal"
+              fullWidth
+              id="cidade"
+              label="Cidade"
+              name="city"
+              value={form.city}
+              required
+            />
+            <TextField
+              onChange={onChange}
+              variant="outlined"
+              // margin="normal"
+              fullWidth
+              id="estado"
+              label="Estado"
+              name="state"
+              value={form.state}
+              required
+            />
+            <TextField
+              onChange={onChange}
+              variant="outlined"
+              fullWidth
+              id="complemento"
+              label="Apto / Bloco"
+              name="complement"
+              value={form.complement}
+              // margin="normal"
+            />
+            <Button
+              onClick={handleAddAddress}
+              color="primary"
+              // margin="normal"
+              type="submit"
+              fullWidth
+              variant="contained"
+            >
+              Salvar
           </Button>
-        </FormStyled>
+          </FormStyled>
+        </RegisterAddressContainer>
       </ThemeProvider>
-    </RegisterAddressContainer>
+    </div>
   );
 }
 

@@ -12,8 +12,6 @@ import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { ThemeProvider } from "@material-ui/core/styles";
-import theme from "../../constants/theme";
 
 function SignUpPage() {
   const history = useHistory();
@@ -64,7 +62,7 @@ function SignUpPage() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <div>
       <Header showBackButton />
       <SignupContainer>
         <img src={Logo} alt="logo" />
@@ -138,7 +136,7 @@ function SignUpPage() {
           </Grid>
         </FormStyled>
       </SignupContainer>
-    </ThemeProvider>
+    </div>
   );
 }
 

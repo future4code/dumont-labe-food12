@@ -145,5 +145,5 @@ export const ConfirmPayButton = styled.button`
   font-weight: bold;
   background-color: rgba(92, 182, 70, 0.5);
   position: absolute;
-  bottom: 0px;
+  bottom: 8px;
 `;

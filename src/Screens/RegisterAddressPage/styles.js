@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const RegisterAddressContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   width: 100vw;
   height: 100vh;
@@ -13,6 +12,7 @@ export const RegisterAddressContainer = styled.div`
 export const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
+  width: 90vw;
+  height: 500px;
 `;
