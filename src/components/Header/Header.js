@@ -1,8 +1,6 @@
 import React from "react";
-import { Route, Switch, useHistory } from "react-router-dom";
-import { MainDiv, HeaderTitleDiv } from "./styled";
-
-import ArrowBackIosOutlinedIcon from "@material-ui/icons/ArrowBackIosOutlined";
+import { useHistory } from "react-router-dom";
+import { MainDiv, HeaderTitleDiv, StyelBackButton } from "./styled";
 
 function Header({ showBackButton, title }) {
   const history = useHistory();
@@ -14,7 +12,7 @@ function Header({ showBackButton, title }) {
   return (
     <MainDiv>
       <HeaderTitleDiv>
-        {showBackButton && <ArrowBackIosOutlinedIcon onClick={goBack} />}
+        {showBackButton && <StyelBackButton onClick={goBack} />}
         {title}
       </HeaderTitleDiv>
     </MainDiv>

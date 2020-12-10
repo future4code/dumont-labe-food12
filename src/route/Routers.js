@@ -15,7 +15,7 @@ function Routers() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path={("/", "/feed")}>
+        <Route exact path={["/", "/feed"]}>
           <FeedPage />
         </Route>
         <Route exact path="/login">
@@ -44,6 +44,9 @@ function Routers() {
         </Route>
         <Route exact path="/perfil/address">
           <EditAddressPage />
+        </Route>
+        <Route>
+          <div>Página não encontrada</div>
         </Route>
       </Switch>
     </BrowserRouter>

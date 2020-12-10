@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { Select } from '@material-ui/core';
+
 export const CardContainer = styled.div`
     width: 328px;
     height: 112px;
@@ -30,4 +32,25 @@ export const Text16 = styled.p`
 export const Text12 = styled.p`
     font-size: 12px;
     margin: 0;
+`
+
+export const CardActionContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+`
+
+export const ModalBodyContainer = styled.div`
+    background: white;
+    margin-top: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+`
+
+
+export const StyledSelect = styled(Select)`
+    width: 280px;
+    variant="outlined"
 `

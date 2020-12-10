@@ -35,6 +35,8 @@ function RestaurantPage() {
   const params = useParams();
   const classes = useStyles();
   const [restaurantDetail, setRestaurantDetail] = useState([]);
+  const [productId, setProductId] = useState([]);
+  const [productQuantity, setProductQuantity] = useState([]);
 
   useEffect(() => {
     getRestaurantDetail();
@@ -62,6 +64,14 @@ function RestaurantPage() {
   };
 
   const productsArray = restaurantDetail.products;
+
+  const defineProductId = (product) => {
+    setProductId(product.id)
+  }
+  const defineProductQuantity = (product) => {
+    setProductQuantity()
+  }
+  console.log(productId)
 
   return (
     <div className={classes.mainContainer}>
@@ -102,6 +112,7 @@ function RestaurantPage() {
                 photoUrl={product.photoUrl}
                 category={product.category}
                 price={product.price}
+                defineProduct={() => defineProductId(product)}
               />
             );
           })}
