@@ -38,6 +38,7 @@ export const CardActionContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: flex-end;
 `
 
 export const ModalBodyContainer = styled.div`
