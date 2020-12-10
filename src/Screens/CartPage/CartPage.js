@@ -24,7 +24,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
 
-function CartPage() {
+function CartPage(props) {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [priceToPay, setPriceToPay] = useState(0);
@@ -32,6 +32,8 @@ function CartPage() {
   useEffect(() => {
     getRestaurantDetails();
   }, []);
+
+  console.log(props)
 
   const getRestaurantDetails = () => {
     const body = {
