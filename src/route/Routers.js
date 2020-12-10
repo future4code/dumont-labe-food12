@@ -10,12 +10,16 @@ import PerfilPage from "../Screens/PerfilPage/PerfilPage";
 import EditPerfilPage from "../Screens/EditPerfilPage/EditPerfilPage";
 import EditAddressPage from "../Screens/EditAddressPage/EditAddressPage";
 import SearchBarPage from "../Screens/SearchBarPage/SearchBarPage";
+import LoadingPage from "../Screens/LoadingPage/LoadingPage";
 
 function Routers() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path={["/", "/feed"]}>
+        <Route exact path={"/"}>
+          <LoadingPage />
+        </Route>
+        <Route exact path={"/feed"}>
           <FeedPage />
         </Route>
         <Route exact path="/login">

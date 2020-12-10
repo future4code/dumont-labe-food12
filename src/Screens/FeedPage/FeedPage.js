@@ -7,9 +7,19 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import theme from "../../constants/theme";
 import { ThemeProvider } from "@material-ui/core/styles";
-import { AppBar, Tab, Tabs, Box, Paper, InputBase, IconButton } from "@material-ui/core";
+import {
+  AppBar,
+  Tab,
+  Tabs,
+  Box,
+  Paper,
+  InputBase,
+  IconButton,
+} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import { goToSearch } from "../../route/coordinator";
+
+import useProtectedPage from "../../hooks/useProtectedPage";
 
 const useStyles = makeStyles({
   listContainer: {
@@ -26,6 +36,7 @@ function TabPanel(props) {
 }
 
 function FeedPage() {
+  useProtectedPage();
   const history = useHistory();
   const classes = useStyles();
   const [restaurants, setRestaurants] = useState(0);
