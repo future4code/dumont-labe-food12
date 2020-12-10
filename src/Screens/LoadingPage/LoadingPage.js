@@ -1,22 +1,34 @@
-import React from "react";
-import Logo from "../../img/logo-future-eats-invert.png";
+import React, { useEffect } from "react";
+import Logo from "../../img/logo-future-eats-invert@2x.png";
 import styled from "styled-components";
+import { useHistory } from "react-router";
+import { goToFeed } from "../../route/coordinator";
 
 const LoadingContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
-  background-color: black;
+  width: 360px;
+  height: 640px;
+  background-color: white;
 `;
 
 function LoadingPage() {
+  const history = useHistory();
+
+  useEffect(() => {
+    setTimeout(InitialPage, 2000);
+  }, []);
+
+  function InitialPage() {
+    goToFeed(history);
+  }
+
   return (
-    <div>
+    <LoadingContainer>
       <img src={Logo} alt="logo" />
-    </div>
+    </LoadingContainer>
   );
 }
 
