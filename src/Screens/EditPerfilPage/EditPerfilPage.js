@@ -50,7 +50,7 @@ function EditPerfilPage() {
         history.push("/perfil");
       })
       .catch((error) => {
-        // alert("Erro ao editar perfil");
+        alert("Erro ao editar perfil");
         console.error(error);
       });
   };

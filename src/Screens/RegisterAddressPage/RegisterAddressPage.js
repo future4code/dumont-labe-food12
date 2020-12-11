@@ -28,7 +28,7 @@ function RegisterAddressPage() {
     complement: "",
   });
 
-  const handleAddAddress = async (event) => {
+  const handleAddAddress = (event) => {
     event.preventDefault();
 
     const body = {
@@ -39,9 +39,9 @@ function RegisterAddressPage() {
       state: form.state,
       complement: form.complement,
     };
-    console.log("BODY", body);
-    try {
-      const response = await axios.put(
+
+    axios
+      .put(
         `https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/address`,
         body,
         {
@@ -49,16 +49,16 @@ function RegisterAddressPage() {
             auth: token,
           },
         }
-      );
+      )
+      .then((response) => {
+        localStorage.removeItem(token);
 
-      localStorage.removeItem("token");
-      localStorage.setItem("token", response.user.token);
-
-      history.push("/");
-    } catch (error) {
-      alert("Cadastro falhou, tente novamente.");
-      console.error(error);
-    }
+        localStorage.setItem("token", response.user.token);
+        history.push("/feed");
+      })
+      .catch((error) => {
+        alert("Erro ao cadastrar endereço");
+      });
   };
 
   return (
