@@ -1,14 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
-  MainDiv,
-  AdressInfoDiv,
-  DeliveryAdress,
-  AdressDetail,
-  Title,
-  Pencil,
-  GoEditProfileDiv,
-  GoEditAddressDiv,
-  UserInfoContainer,
+  ProfileContainer, ProfileDetailContainer, RowFlexContainer, AddressDetailContainer, OrderHistoryContainer
 } from "./styles";
 import CreateIcon from "@material-ui/icons/Create";
 import axios from "axios";
@@ -67,31 +59,32 @@ function PerfilPage() {
   };
 
   return (
-    <MainDiv>
+    <ProfileContainer>
       <Header title={"Meu Perfil"} />
-      <hr />
-      <div>
-        <Pencil>
-          {profile.name}
-          <GoEditProfileDiv onClick={() => goToEditProfile(history)}>
-            <CreateIcon />
-          </GoEditProfileDiv>
-        </Pencil>
+
+      <ProfileDetailContainer>
+        <RowFlexContainer>
+          <p>{profile.name}</p>
+          <CreateIcon onClick={() => goToEditProfile(history)} />
+        </RowFlexContainer>
         <p>{profile.email}</p>
         <p>{profile.cpf}</p>
-      </div>
-      <AdressInfoDiv>
-        <DeliveryAdress>
-          Endereço de entrega
-          <GoEditAddressDiv onClick={() => goToEditAddress(history)}>
-            <CreateIcon />
-          </GoEditAddressDiv>
-        </DeliveryAdress>
-        <AdressDetail>{profile.address}</AdressDetail>
-      </AdressInfoDiv>
-      <Title>Histórico de pedidos</Title>
+      </ProfileDetailContainer>
+
+      <AddressDetailContainer>
+        <RowFlexContainer>
+          <p>Endereço Cadastrado</p>
+          <CreateIcon onClick={() => goToEditAddress(history)} />
+        </RowFlexContainer>
+        <p>{profile.address}</p>
+      </AddressDetailContainer>
+
+      <OrderHistoryContainer>
+        <p>Histórico de pedidos</p>
+      </OrderHistoryContainer>
+
       <Footer />
-    </MainDiv>
+    </ProfileContainer>
   );
 }
 

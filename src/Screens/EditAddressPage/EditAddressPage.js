@@ -94,8 +94,9 @@ function EditAddressPage() {
             variant="outlined"
             fullWidth
             id="endereco"
-            label="Rua"
-            name={address.street}
+            label="Endereço"
+            placeholder={address.street}
+            name="street"
             value={profile.street}
             required
           />
@@ -105,7 +106,8 @@ function EditAddressPage() {
             fullWidth
             id="numero"
             label="Número"
-            name={address.number}
+            placeholder={address.number}
+            name="number"
             value={profile.number}
             required
           />
@@ -114,7 +116,8 @@ function EditAddressPage() {
             variant="outlined"
             fullWidth
             id="complemento"
-            label={address.complement}
+            label="Complemento"
+            placeholder={address.complement}
             name="complement"
             value={profile.complement}
           />
@@ -123,7 +126,8 @@ function EditAddressPage() {
             variant="outlined"
             fullWidth
             name="neighbourhood"
-            label={address.neighbourhood}
+            label="Bairro"
+            placeholder={address.neighbourhood}
             id="bairro"
             value={profile.neighbourhood}
             required
@@ -133,7 +137,8 @@ function EditAddressPage() {
             variant="outlined"
             fullWidth
             name="city"
-            label={address.city}
+            label="Cidade"
+            placeholder={address.city}
             id="cidade"
             value={profile.city}
             required
@@ -143,7 +148,8 @@ function EditAddressPage() {
             variant="outlined"
             fullWidth
             name="state"
-            label={address.state}
+            label="Estado"
+            placeholder={address.state}
             id="estado"
             value={profile.state}
             required
