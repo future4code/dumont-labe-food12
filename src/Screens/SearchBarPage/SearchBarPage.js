@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import useForm from "../../hooks/useForm";
-import { Button, Input } from "@material-ui/core";
+import { Paper, InputBase, IconButton } from "@material-ui/core";
 import axios from "axios";
-import { SearchPage, InputSearch, MainSearch } from "./styles";
+import { MainSearch } from "./styles";
 import SearchIcon from "@material-ui/icons/Search";
 import RestaurantCard from "../../components/RestaurantCard/RestaurantCard";
 import Header from "../../components/Header/Header";
+import { goToSearch } from "../../route/coordinator";
+import { useHistory } from "react-router";
 
 function SearchBarPage() {
+  const history = useHistory();
   const [restaurants, setRestaurants] = useState(0);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [form, onChange] = useForm({
@@ -55,15 +58,12 @@ function SearchBarPage() {
   return (
     <MainSearch>
       <Header title={"Busca"} showBackButton />
-      <SearchPage>
-        <SearchIcon onClick={onSubmit}>Buscar</SearchIcon>
-        <InputSearch
-          placeholder="Busca"
-          onChange={onChange}
-          value={form.search}
-          name={"search"}
-        />
-      </SearchPage>
+      <Paper color="primary" onClick={() => goToSearch(history)}>
+          <IconButton type="submit">
+            <SearchIcon />
+          </IconButton>
+          <InputBase placeholder="Restaurante" />
+        </Paper>
       {filteredRestaurants &&
         filteredRestaurants.map((restaurant) => {
           console.log(restaurant);
