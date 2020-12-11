@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   MainDiv,
   ApplicationDiv,
   AdressInfoDiv,
   DeliveryAdress,
   AdressDetail,
-  Title,
+  CartCardListContainer,
   SubtotalDiv,
   SubtotalTitle,
   SubtotalValue,
@@ -23,17 +23,18 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
+import GlobalStateContext from "../../global/GlobalStateContext";
+import DishCard from "../../components/DishCard/DishCard";
 
-function CartPage(props) {
+function CartPage() {
+  const { states, setters } = useContext(GlobalStateContext);
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
-  const [priceToPay, setPriceToPay] = useState(0);
 
+  console.log("na pagina de carrinho", states.cart)
+  
   useEffect(() => {
     getRestaurantDetails();
   }, []);
-
-  console.log(props)
 
   const getRestaurantDetails = () => {
     const body = {
@@ -70,24 +71,26 @@ function CartPage(props) {
   return (
     <MainDiv>
       <ApplicationDiv>
-        {products &&
-          products.map((item) => {
-            return (
-              <div>
-                <p>{item.price}</p>
-                <p>{item.category}</p>
-                <p>{item.name}</p>
-                <p>{item.description}</p>
-                <img src={item.photoUrl} />
-              </div>
-            );
-          })}
         <Header title={"Meu carrinho"} showBackButton />
         <AdressInfoDiv>
           <DeliveryAdress>Endereço de entrega</DeliveryAdress>
           <AdressDetail>Rua Labenu, 100</AdressDetail>
         </AdressInfoDiv>
-        <Title>Carrinho Vazio</Title>
+        <CartCardListContainer>{states.cart && states.cart.map((item) => {
+          console.log("item no cart", item.newItem)
+          return (
+            <DishCard
+              key={item.newItem.id}
+              id={item.newItem.id}
+              name={item.newItem.name}
+              description={item.newItem.description}
+              photoUrl={item.newItem.photoUrl}
+              category={item.newItem.category}
+              price={item.newItem.price}
+              restaurantId={item.newItem.id}
+            />
+          )
+        })}</CartCardListContainer>
         <ShippingDiv>
           <p>Frete R$0,00</p>
         </ShippingDiv>

@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router';
 import { CardContainer, DishImage, CardDetailContainer, Text16, Text12, CardActionContainer, ModalBodyContainer, StyledSelect } from "./styled";
-import { goToCart } from '../../route/coordinator';
 import { Button, MenuItem, Modal } from '@material-ui/core';
+import GlobalStateContext from "../../global/GlobalStateContext";
 
 function DishCard(props) {
     const history = useHistory();
+    const { states, setters } = useContext(GlobalStateContext);
     const [openModal, setOpenModal] = useState(false)
     const [productQuantity, setProductQuantity] = useState(0);
-    const [productId, setProductId] = useState([]);
-    const [productsInCart, setProductsInCart] = useState([]);
 
     const handleOpenModal = () => {
         setOpenModal(true)
@@ -23,19 +22,29 @@ function DishCard(props) {
         setProductQuantity(event.target.value);
     };
 
-    const defineProductId = () => {
-        setProductId(props.id)
+    const cartItem = {
+        id: `${props.id}`,
+        name: `${props.name}`,
+        description: `${props.description}`,
+        photoUrl: `${props.photoUrl}`,
+        category: `${props.category}`,
+        price: `${props.price}`,
+        productQuantity: productQuantity,
+        restaurantId: `${props.restaurantId}`,
     }
 
-    console.log("quantidade", productQuantity)
-    console.log("id", productId)
-    console.log("id do restaurante", props.restaurantId)
-
-    const handleAddToCart = (props) => {
-        const restaurantId = props.restaurantId
-        const cartItem = {productQuantity, productId, restaurantId}
-        goToCart(history)
+    const addItemToCart = (newItem) => {
+        if (newItem.productQuantity != 0) {
+            let newCart = [...states.cart]
+            newCart.push({ newItem })
+            setters.setCart(newCart)
+            alert(`${newItem.productName} foi adicionado ao seu carrinho!`)
+            setOpenModal(false)
+        } else {
+            alert("A quantidade não pode ser sero!")
+        }
     }
+    console.log("CARRINHO", states.cart)
 
     const modalBody = (
         <ModalBodyContainer>
@@ -56,7 +65,7 @@ function DishCard(props) {
                     <MenuItem value={5}>5</MenuItem>
                 </StyledSelect>
             </div>
-            <Button color="primary" onClick={handleAddToCart}>adicionar ao carrinho</Button>
+            <Button color="primary" onClick={() => addItemToCart(cartItem)}>adicionar ao carrinho</Button>
         </ModalBodyContainer>
     )
 
@@ -70,7 +79,7 @@ function DishCard(props) {
             </CardDetailContainer>
             <CardActionContainer>
                 <button>{productQuantity}</button>
-                <div onClick={defineProductId}>
+                <div>
                     <button onClick={handleOpenModal}>
                         Adicionar
                     </button>

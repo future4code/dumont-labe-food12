@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useContext, useEffect } from "react";
+import GlobalStateContext from "../../global/GlobalStateContext";
+import axios from 'axios'
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -33,7 +34,7 @@ const useStyles = makeStyles({
 function RestaurantPage() {
   const params = useParams();
   const classes = useStyles();
-  const [restaurantDetail, setRestaurantDetail] = useState([]);
+  const { states, setters } = useContext(GlobalStateContext);
 
   useEffect(() => {
     getRestaurantDetail();
@@ -52,16 +53,16 @@ function RestaurantPage() {
         }
       )
       .then((response) => {
-        setRestaurantDetail(response.data.restaurant);
+        setters.setRestaurantDetail(response.data.restaurant)
       })
       .catch((error) => {
-        console.error(error.message);
-        alert("Erro ao requisitar os detalhes");
+        console.error(error.message)
+        alert("Erro ao requisitar os detalhes")
       });
   };
 
-  const productsArray = restaurantDetail.products;
-
+  const productsArray = states.restaurantDetail.products;
+  
   return (
     <div className={classes.mainContainer}>
       <Header title={"Restaurante"} showBackButton />
@@ -69,22 +70,22 @@ function RestaurantPage() {
         <Card>
           <CardMedia
             className={classes.image}
-            image={restaurantDetail.logoUrl}
+            image={states.restaurantDetail.logoUrl}
           />
           <CardContent>
             <Typography gutterBottom variant="body1">
-              {restaurantDetail.name}
+              {states.restaurantDetail.name}
             </Typography>
             <div className={classes.middleContainer}>
               <Typography variant="body1" color="textSecondary">
-                {restaurantDetail.deliveryTime} min
+                {states.restaurantDetail.deliveryTime} min
               </Typography>
               <Typography variant="body1" color="textSecondary">
-                Frete R${restaurantDetail.shipping},00
+                Frete R${states.restaurantDetail.shipping},00
               </Typography>
             </div>
             <Typography variant="body1" color="textSecondary">
-              {restaurantDetail.address}
+              {states.restaurantDetail.address}
             </Typography>
           </CardContent>
         </Card>

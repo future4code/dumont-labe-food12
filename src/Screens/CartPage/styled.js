@@ -3,15 +3,12 @@ import styled from "styled-components";
 export const MainDiv = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 `;
 
 export const ApplicationDiv = styled.div`
   display: flex;
   flex-direction: column;
-  width: 360px;
-  height: 640px;
+  justify-content: space-between;
 `;
 
 export const AdressInfoDiv = styled.div`
@@ -55,13 +52,12 @@ export const AdressDetail = styled.p`
   color: #000000;
 `;
 
-export const Title = styled.div`
+export const CartCardListContainer = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 360px;
-  height: 42px;
-  margin-top: 8px;
+  margin-top: 20px;
 `;
 export const ShippingDiv = styled.div`
   display: flex;
@@ -144,6 +140,4 @@ export const ConfirmPayButton = styled.button`
   border: none;
   font-weight: bold;
   background-color: rgba(92, 182, 70, 0.5);
-  position: absolute;
-  bottom: 8px;
 `;
