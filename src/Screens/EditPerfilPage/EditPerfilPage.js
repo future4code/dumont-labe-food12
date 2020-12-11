@@ -1,27 +1,39 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { EditPerfilContainer, FormStyled } from "./styles";
+import useForm from "../../hooks/useForm";
 import Header from "../../components/Header/Header";
+import { useHistory } from "react-router";
+import useProtectedPage from "../../hooks/useProtectedPage";
 
 // MATERIAL UI - IMPORTS
 import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "../../constants/theme";
 
 function EditPerfilPage() {
-  useEffect(() => {}, []);
+  const history = useHistory();
+  useProtectedPage();
+  // useEffect(() => {}, []);
 
-  const putUpdateProfile = () => {
+  const [profile, onChange] = useForm({
+    name: "",
+    email: "",
+    cpf: "",
+  });
+
+  const putUpdateProfile = (event) => {
+    event.preventDefault();
     const body = {
-      name: "Astrodev",
-      email: "astrodev@future4.com",
-      cpf: "111.111.111-13",
+      name: profile.name,
+      email: profile.email,
+      cpf: profile.cpf,
     };
 
+    console.log("body", body);
     const token = localStorage.getItem("token");
+
     axios
       .put(
         `https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/profile`,
@@ -33,10 +45,13 @@ function EditPerfilPage() {
         }
       )
       .then((response) => {
+        console.log(response);
         alert("Perfil editado com sucesso");
+        history.push("/perfil");
       })
       .catch((error) => {
-        alert("Erro ao editar perfil");
+        // alert("Erro ao editar perfil");
+        console.error(error);
       });
   };
 
@@ -44,46 +59,43 @@ function EditPerfilPage() {
     <ThemeProvider theme={theme}>
       <EditPerfilContainer>
         <Header title={"Editar"} showBackButton />
-        <Typography align="center" component="h1" variant="h5">
-          Editar
-        </Typography>
         <FormStyled>
           <TextField
+            onChange={onChange}
+            value={profile.name}
             variant="outlined"
             margin="normal"
             fullWidth
-            id="nome"
+            id="name"
             label="Nome"
-            name="nome"
-            autoComplete="nome"
-            autoFocus
+            name="name"
             required
           />
           <TextField
+            onChange={onChange}
+            value={profile.email}
             variant="outlined"
             margin="normal"
             fullWidth
             id="email"
             label="E-mail"
             name="email"
-            autoComplete="email"
-            autoFocus
             required
           />
           <TextField
+            onChange={onChange}
+            value={profile.cpf}
             variant="outlined"
             margin="normal"
             fullWidth
             id="cpf"
             label="CPF"
             name="cpf"
-            autoComplete="cpf"
-            autoFocus
             required
           />
-
+          <br />
           <Button
-            onClick={putUpdateProfile()}
+            onClick={putUpdateProfile}
             color="primary"
             type="submit"
             fullWidth
@@ -91,9 +103,6 @@ function EditPerfilPage() {
           >
             Salvar
           </Button>
-          <Grid container>
-            <Grid item />
-          </Grid>
         </FormStyled>
       </EditPerfilContainer>
     </ThemeProvider>
