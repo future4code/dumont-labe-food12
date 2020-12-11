@@ -146,7 +146,7 @@ function RegisterAddressPage() {
               variant="contained"
             >
               Salvar
-          </Button>
+            </Button>
           </FormStyled>
         </RegisterAddressContainer>
       </ThemeProvider>
