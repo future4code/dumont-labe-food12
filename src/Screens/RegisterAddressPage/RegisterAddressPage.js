@@ -18,7 +18,6 @@ function RegisterAddressPage() {
   const token = localStorage.getItem("token");
 
   useProtectedPage();
-  console.log("", token);
 
   const [form, onChange] = useForm({
     street: "",
@@ -78,7 +77,6 @@ function RegisterAddressPage() {
               id="logradouro"
               label="Rua / Avenida"
               name="street"
-              // margin="normal"
               value={form.street}
               required
             />
@@ -91,13 +89,11 @@ function RegisterAddressPage() {
               name="number"
               type="number"
               value={form.number}
-              // margin="normal"
               required
             />
             <TextField
               onChange={onChange}
               variant="outlined"
-              // margin="normal"
               fullWidth
               id="bairro"
               label="Bairro"
@@ -108,7 +104,6 @@ function RegisterAddressPage() {
             <TextField
               onChange={onChange}
               variant="outlined"
-              // margin="normal"
               fullWidth
               id="cidade"
               label="Cidade"
@@ -119,7 +114,6 @@ function RegisterAddressPage() {
             <TextField
               onChange={onChange}
               variant="outlined"
-              // margin="normal"
               fullWidth
               id="estado"
               label="Estado"
@@ -135,18 +129,16 @@ function RegisterAddressPage() {
               label="Apto / Bloco"
               name="complement"
               value={form.complement}
-              // margin="normal"
             />
             <Button
               onClick={handleAddAddress}
               color="primary"
-              // margin="normal"
               type="submit"
               fullWidth
               variant="contained"
             >
               Salvar
-          </Button>
+            </Button>
           </FormStyled>
         </RegisterAddressContainer>
       </ThemeProvider>

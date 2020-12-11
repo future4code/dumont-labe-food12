@@ -4,8 +4,8 @@ export const EditPerfilContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
+  width: 360px;
+  height: 640px;
   margin: 10px;
 `;
 
