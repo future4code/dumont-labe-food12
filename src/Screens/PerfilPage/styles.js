@@ -73,3 +73,21 @@ export const Pencil = styles.p`
     display: flex;
     justify-content: space-between;
 `
+
+export const GoEditProfileDiv = styles.div`
+  cursor: pointer;
+  outline: none;
+
+  &:hover {
+    color: #5cb646;
+  }
+`;
+
+export const GoEditAddressDiv = styles.div`
+  cursor: pointer;
+  outline: none;
+
+  &:hover {
+    color: #5cb646;
+  }
+`;

@@ -6,13 +6,19 @@ import {
   AdressDetail,
   Title,
   Pencil,
+  GoEditProfileDiv,
+  GoEditAddressDiv
 } from "./styles";
 import CreateIcon from "@material-ui/icons/Create";
 import axios from "axios";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import { goToEditProfile } from "../../route/coordinator"
+import { goToEditAddress } from "../../route/coordinator"
+import { useHistory } from "react-router";
 
 function PerfilPage() {
+  const history = useHistory();
   const [profile, setProfile] = useState({});
   const [orderHistory, setOrderHistory] = useState([]);
 
@@ -66,14 +72,19 @@ function PerfilPage() {
       <div>
         <Pencil>
           {profile.name}
-          <CreateIcon />
+          <GoEditProfileDiv onClick={() => goToEditProfile(history)}>
+            <CreateIcon />
+          </GoEditProfileDiv>
         </Pencil>
         <p>{profile.email}</p>
         <p>{profile.cpf}</p>
       </div>
       <AdressInfoDiv>
         <DeliveryAdress>
-          Endereço de entrega <CreateIcon />
+          Endereço de entrega 
+          <GoEditAddressDiv onClick={() => goToEditAddress(history)}>
+            <CreateIcon />
+          </GoEditAddressDiv>
         </DeliveryAdress>
         <AdressDetail>{profile.address}</AdressDetail>
       </AdressInfoDiv>
