@@ -7,14 +7,15 @@ import {
   Title,
   Pencil,
   GoEditProfileDiv,
-  GoEditAddressDiv
+  GoEditAddressDiv,
+  UserInfoContainer,
 } from "./styles";
 import CreateIcon from "@material-ui/icons/Create";
 import axios from "axios";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import { goToEditProfile } from "../../route/coordinator"
-import { goToEditAddress } from "../../route/coordinator"
+import { goToEditProfile } from "../../route/coordinator";
+import { goToEditAddress } from "../../route/coordinator";
 import { useHistory } from "react-router";
 
 function PerfilPage() {
@@ -81,7 +82,7 @@ function PerfilPage() {
       </div>
       <AdressInfoDiv>
         <DeliveryAdress>
-          Endereço de entrega 
+          Endereço de entrega
           <GoEditAddressDiv onClick={() => goToEditAddress(history)}>
             <CreateIcon />
           </GoEditAddressDiv>

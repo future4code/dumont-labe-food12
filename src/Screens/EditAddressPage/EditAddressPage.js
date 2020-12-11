@@ -3,19 +3,43 @@ import axios from "axios";
 import { EditAddressContainer, FormStyled } from "./styles";
 import Header from "../../components/Header/Header";
 import useForm from "../../hooks/useForm";
+import { useHistory } from "react-router";
 
 // MATERIAL UI - IMPORTS
 import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "../../constants/theme";
 
 function EditAddressPage() {
-  useEffect(() => {}, []);
+  const history = useHistory();
+  const [address, setaddress] = useState([]);
 
-  const [form, onChange] = useForm({
+  useEffect(() => {
+    getProfile();
+  }, []);
+
+  const getProfile = () => {
+    const token = localStorage.getItem("token");
+
+    axios
+      .get(
+        `https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/profile/address`,
+        {
+          headers: {
+            auth: token,
+          },
+        }
+      )
+      .then((response) => {
+        setaddress(response.data.address);
+      })
+      .catch((error) => {
+        console.log(error.messenge);
+      });
+  };
+
+  const [profile, onChange] = useForm({
     street: "",
     number: "",
     neighbourhood: "",
@@ -24,15 +48,18 @@ function EditAddressPage() {
     complement: "",
   });
 
-  const putAddAddress = () => {
+  const putAddAddress = (event) => {
+    event.preventDefault();
+
     const body = {
-      street: form.street,
-      number: form.number,
-      neighbourhood: form.neighbourhood,
-      city: form.city,
-      state: form.state,
-      complement: form.complement,
+      street: profile.street,
+      number: profile.number,
+      neighbourhood: profile.neighbourhood,
+      city: profile.city,
+      state: profile.state,
+      complement: profile.complement,
     };
+    console.log("body", body);
 
     const token = localStorage.getItem("token");
     axios
@@ -46,91 +73,83 @@ function EditAddressPage() {
         }
       )
       .then((response) => {
+        console.log("response", response);
+        history.push("/perfil");
+
         alert("Endereço cadastrado com sucesso");
       })
       .catch((error) => {
         alert("Erro ao cadastrar endereço");
+        console.error(error);
       });
   };
 
   return (
     <ThemeProvider theme={theme}>
-      <Header title={""} showBackButton />
+      <Header title={"Editar endereço"} showBackButton />
       <EditAddressContainer>
-        <Typography align="center" component="h1" variant="h5">
-          Endereço
-        </Typography>
         <FormStyled>
           <TextField
+            onChange={onChange}
             variant="outlined"
-            margin="normal"
             fullWidth
             id="endereco"
-            label="Endereço"
-            name="endereco"
-            autoComplete="endereco"
-            value={form.street}
-            autoFocus
+            label="Rua"
+            name={address.street}
+            value={profile.street}
             required
           />
           <TextField
+            onChange={onChange}
             variant="outlined"
-            margin="normal"
             fullWidth
             id="numero"
             label="Número"
-            name="numero"
-            autoComplete="numero"
-            value={form.number}
-            autoFocus
+            name={address.number}
+            value={profile.number}
             required
           />
           <TextField
+            onChange={onChange}
             variant="outlined"
-            margin="normal"
             fullWidth
             id="complemento"
-            label="Complemento"
-            name="complemento"
-            autoComplete="complemento"
-            value={form.complement}
-            autoFocus
-            required
+            label={address.complement}
+            name="complement"
+            value={profile.complement}
           />
           <TextField
+            onChange={onChange}
             variant="outlined"
-            margin="normal"
             fullWidth
-            name="bairro"
-            label="Bairro"
+            name="neighbourhood"
+            label={address.neighbourhood}
             id="bairro"
-            autoComplete="bairro"
-            value={form.neighbourhood}
+            value={profile.neighbourhood}
             required
           />
           <TextField
+            onChange={onChange}
             variant="outlined"
-            margin="normal"
             fullWidth
-            name="cidade"
-            label="Cidade"
+            name="city"
+            label={address.city}
             id="cidade"
-            value={form.city}
+            value={profile.city}
             required
           />
           <TextField
+            onChange={onChange}
             variant="outlined"
-            margin="normal"
             fullWidth
-            name="estado"
-            label="Estado"
+            name="state"
+            label={address.state}
             id="estado"
-            value={form.state}
+            value={profile.state}
             required
           />
-
           <Button
-            onClick={putAddAddress()}
+            onClick={putAddAddress}
             color="primary"
             type="submit"
             fullWidth
@@ -138,9 +157,6 @@ function EditAddressPage() {
           >
             Salvar
           </Button>
-          <Grid container>
-            <Grid item />
-          </Grid>
         </FormStyled>
       </EditAddressContainer>
     </ThemeProvider>
